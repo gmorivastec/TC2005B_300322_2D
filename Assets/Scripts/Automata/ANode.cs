@@ -50,4 +50,9 @@ public class ANode
 
         return transferencia[simbolo];
     }
+
+    public int Sumar(int n1, int n2){
+
+        return n1 + n2;
+    }
 }
