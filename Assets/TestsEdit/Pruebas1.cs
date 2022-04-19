@@ -28,7 +28,9 @@ public class Pruebas1
 
         Assert.That("adios", Is.EqualTo("adios"));
 
-        Assert.That(":)", Is.EqualTo(":)")); 
+        Assert.That(":)", Is.EqualTo(":)"));
+
+         
         
         // pon en un métodos todos los asserts que corresponden 
         // a las pruebs que harías en un método  de tu código
