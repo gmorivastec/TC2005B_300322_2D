@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c2f881bb32e6ad803b6f20d500fd91e4, type: 3}
   m_Name: Soldado
   m_EditorClassIdentifier: 
-  defensa: 0
-  ataque: 0
-  nombre: 
+  defensa: 100
+  ataque: 90
+  nombre: Soldado
+  proyectil: {fileID: 0}
