@@ -7,8 +7,8 @@ public class PBalitaManager : MonoBehaviour
 
     // contenedor de objetos
     // Array List  
-    private List<GameObject> pool;
-    private int ultimoDisponible;
+    private Dictionary<GameObject, int> pool;
+    private Queue<GameObject> objetosDisponibles;
 
     [SerializeField]
     private int maxPool;
@@ -34,29 +34,44 @@ public class PBalitaManager : MonoBehaviour
 
         Instance = this;
 
-        pool = new List<GameObject>();
+        pool = new Dictionary<GameObject, int>();
+        objetosDisponibles = new Queue<GameObject>();
 
         // creación de objetos de pool
         for(int i = 0; i < maxPool; i++){
             
             // instanciar
-            GameObject nuevo = Instantiate(balita) as GameObject;
+            GameObject nuevo = Instantiate<GameObject>(balita);
             
             // agregar a pool
-            pool.Add(nuevo);
+            pool.Add(nuevo, i);
+            objetosDisponibles.Enqueue(nuevo);
 
             // deshabilitar
             nuevo.SetActive(false);
         }
-
-        ultimoDisponible = 0;
     }
 
     public void ActivarBala(Vector3 pos){
 
-        pool[ultimoDisponible].transform.position = pos;
-        pool[ultimoDisponible].SetActive(true);
-        ultimoDisponible++;
+        if(objetosDisponibles.Count == 0)
+            return;
+
+        GameObject actual = objetosDisponibles.Dequeue();
+
+        actual.transform.position = pos;
+        actual.SetActive(true);
+        
+    }
+
+    public void DesactivarBala(GameObject bala){
+
+        // 1ero - checa que sea parte del pool
+        if(!pool.ContainsKey(bala))
+            return;
+
+        objetosDisponibles.Enqueue(bala);
+        bala.SetActive(false);
     }
 
 }

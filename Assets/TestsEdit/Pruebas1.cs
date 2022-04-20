@@ -13,7 +13,9 @@ public class Pruebas1
         // Modelo clásico
         // - los constraints (restricciones) están definidos por medio de métodos
         // - existe 1 método por tipo de constraint
-        Assert.AreEqual(15, 15);
+        ANode nodo = new ANode("prueba", typeof(DormidoBehaviour));
+        Assert.AreEqual(15, nodo.Sumar(12, 3));
+        Assert.AreEqual(-2, nodo.Sumar(1, -3));
     }
 
     [Test]
